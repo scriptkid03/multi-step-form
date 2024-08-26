@@ -115,7 +115,7 @@ export default function Home() {
             </div>
           </div>
           {/* Personal info */}
-          {/* <div className="flex flex-col w-[70%] h-full justify-center px-20 gap-10">
+          {/* <div className="flex flex-col w-[70%] h-full justify-center mt-5 px-20 gap-10">
             <div className="flex flex-col gap-2">
               <span className="text-marineBlue bold text-3xl">
                 Personal info
@@ -193,7 +193,7 @@ export default function Home() {
           </div> */}
 
           {/* Select Plan */}
-          <div className="flex flex-col w-[70%] h-full justify-center px-20 gap-10">
+          {/* <div className="flex flex-col w-[70%] h-full justify-center mt-5 px-20 gap-10">
             <div className="flex flex-col gap-2">
               <span className="text-marineBlue bold text-3xl">
                 Select your plan
@@ -239,6 +239,101 @@ export default function Home() {
                     </div>
                     <span className={`medium ${isYearly ? 'text-marineBlue' : 'text-coolGray'}`}>
                       Year
+                    </span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-end mt-16">
+                  <button className="text-coolGray w-fit hover:text-marineBlue px-5 py-3">
+                    Go back
+                  </button>
+                  <button className="bg-marineBlue px-5 py-3 w-fit rounded-lg hover:bg-opacity-80" onSubmit={handleSubmit}>
+                    <span className="text-alabaster">Next Step</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div> */}
+
+          {/* Pick addons */}
+          <div className="flex flex-col w-[70%] h-full justify-center mt-5 px-20 gap-10">
+            <div className="flex flex-col gap-2">
+              <span className="text-marineBlue bold text-3xl">
+                Pick add-ons
+              </span>
+              <span className="text-coolGray">
+                Add-ons help enhance your gaming experience.
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center h-20 w-full border rounded-lg hover:border-purplishBlue justify-between p-5">
+                    <div className="flex items-center gap-6">
+                      <div className="flex items-center justify-center bg-purplishBlue h-4 w-4 p-1 rounded-sm">
+                        <Image
+                          src="/svgs/icon-checkmark.svg"
+                          width={15}
+                          height={15}
+                          alt="checkmark"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-marineBlue medium">
+                          Online service
+                        </span>
+                        <span className="text-coolGray">
+                          Access to multiplayer games
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-purplishBlue">
+                      +$1/mo
+                    </span>
+                  </div>
+                  <div className="flex items-center h-20 w-full border rounded-lg hover:border-purplishBlue justify-between p-5">
+                    <div className="flex items-center gap-6">
+                      <div className="flex items-center justify-center bg-purplishBlue h-4 w-4 p-1 rounded-sm">
+                        <Image
+                          src="/svgs/icon-checkmark.svg"
+                          width={15}
+                          height={15}
+                          alt="checkmark"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-marineBlue medium">
+                          Larger storage
+                        </span>
+                        <span className="text-coolGray">
+                          Extra 1TB of cloud storage
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-purplishBlue">
+                      +$2/mo
+                    </span>
+                  </div>
+                  <div className="flex items-center h-20 w-full border rounded-lg hover:border-purplishBlue justify-between p-5">
+                    <div className="flex items-center gap-6">
+                      <div className="flex items-center justify-center bg-purplishBlue h-4 w-4 p-1 rounded-sm">
+                        <Image
+                          src="/svgs/icon-checkmark.svg"
+                          width={15}
+                          height={15}
+                          alt="checkmark"
+                        />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-marineBlue medium">
+                          Customizable profile
+                        </span>
+                        <span className="text-coolGray">
+                          Custom theme on your profile
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-purplishBlue">
+                      +$2/mo
                     </span>
                   </div>
                 </div>
