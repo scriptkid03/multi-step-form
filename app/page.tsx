@@ -23,7 +23,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-lightBlue">
       <div className="flex h-screen w-screen items-center justify-center">
         <div className="flex w-[65%] h-[75%] bg-white rounded-xl p-4">
-          <Sidebar/>
+          <Sidebar currentStep={step}/>
           <div className="flex flex-col w-[70%] h-full justify-center mt-5 px-20 gap-10">
             {step === 1 && (
               <StepOne
@@ -45,7 +45,7 @@ export default function Home() {
               formData={formData} 
               setFormData={setFormData} 
               prevStep={prevStep} 
-              isYearly={isYearly}
+              // isYearly={isYearly}
             />            
             )}
           </div>
