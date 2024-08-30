@@ -1,5 +1,4 @@
-export default function Step3({ formData, setFormData, prevStep }) {
-
+export default function StepThree({ formData, setFormData, prevStep }) {
   const addons = [
     {
       name: 'Online service',
@@ -21,6 +20,18 @@ export default function Step3({ formData, setFormData, prevStep }) {
     },
   ];
 
+  const handleAddonChange = (addonName: any) => {
+    const updatedAddons = formData.addons.includes(addonName)
+      ? formData.addons.filter((name: any) => name !== addonName)
+      : [...formData.addons, addonName];
+
+    setFormData({ ...formData, addons: updatedAddons });
+  };
+
+  const handleDivClick = (addonName: string) => {
+    handleAddonChange(addonName);
+  };
+
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     // Handle final form submission
@@ -30,36 +41,34 @@ export default function Step3({ formData, setFormData, prevStep }) {
   return (
     <>
       <div className="flex flex-col gap-2">
-        <span className="text-marineBlue bold text-3xl">
-          Pick add-ons
-        </span>
-        <span className="text-coolGray">
-          Add-ons help enhance your gaming experience.
-        </span>
+        <span className="text-marineBlue bold text-3xl">Pick add-ons</span>
+        <span className="text-coolGray">Add-ons help enhance your gaming experience.</span>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-3">
           {addons.map((addon) => (
-            <div className="flex items-center h-20 w-full border rounded-lg hover:border-purplishBlue justify-between p-5">
-              <>
-                <div key={addon.name} className="flex items-center gap-6">
-                  <div className="flex items-center justify-center rounded-sm">
-                    <input type="checkbox" className="w-4 h-4 accent-purplishBlue" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-marineBlue medium">
-                      {addon.name}
-                    </span>
-                    <span className="text-coolGray">
-                      {addon.description}
-                    </span>
-                  </div>
+            <div
+              key={addon.name}
+              className={`flex items-center h-20 w-full border rounded-lg justify-between p-5 cursor-pointer ${formData.addons.includes(addon.name) ? 'border-purplishBlue bg-alabaster' : 'hover:border-purplishBlue'}`}
+              onClick={() => handleDivClick(addon.name)}
+            >
+              <div className="flex items-center gap-6">
+                <div className="flex items-center justify-center rounded-sm">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 accent-purplishBlue"
+                    checked={formData.addons.includes(addon.name)}
+                    readOnly
+                  />
                 </div>
-                <span className="text-purplishBlue">
-                  {/* {isYearly ? addon.yearlyPrice : addon.monthlyPrice} */}
-                  {addon.monthlyPrice}
-                </span>
-              </>
+                <div className="flex flex-col">
+                  <span className="text-marineBlue medium">{addon.name}</span>
+                  <span className="text-coolGray">{addon.description}</span>
+                </div>
+              </div>
+              <span className="text-purplishBlue">
+                {formData.isYearly ? addon.yearlyPrice : addon.monthlyPrice}
+              </span>
             </div>
           ))}
           <div className="flex justify-between items-end mt-16">
@@ -75,6 +84,7 @@ export default function Step3({ formData, setFormData, prevStep }) {
     </>
   );
 }
+
 
 
 

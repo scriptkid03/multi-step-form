@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Step1({ formData, setFormData, nextStep }) {
+export default function StepOne({ formData, setFormData, nextStep }) {
   const [errors, setErrors] = useState({ name: "", email: "", phone: "" });
 
   const validateEmail = (email: string) => {

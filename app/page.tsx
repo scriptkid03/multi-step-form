@@ -6,12 +6,14 @@ import StepThree from "./components/addons";
 import Sidebar from "./components/sidebar/sidebar";
 
 export default function Home() {
+  const [isYearly, setIsYearly] = useState(false);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-
+    isYearly: false,
+    addons:[],
   });
 
   const nextStep = () => setStep(step + 1);
@@ -40,10 +42,11 @@ export default function Home() {
             )}
             {step === 3 && (
               <StepThree
-                formData={formData}
-                setFormData={setFormData}
-                prevStep={prevStep}
-              />
+              formData={formData} 
+              setFormData={setFormData} 
+              prevStep={prevStep} 
+              isYearly={isYearly}
+            />            
             )}
           </div>
         </div>

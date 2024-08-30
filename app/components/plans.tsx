@@ -1,12 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function Step2({ formData, setFormData, nextStep, prevStep }) {
-  const [isYearly, setIsYearly] = useState(false);
-
-  const toggleSwitch = () => {
-    setIsYearly(!isYearly);
-  };
+export default function StepTwo({ formData, setFormData, nextStep, prevStep }) {
+  const [isYearly, setIsYearly] = useState(formData.isYearly);
+  const [selectedPlan, setSelectedPlan] = useState(formData.selectedPlan || "Arcade");
 
   const plans = [
     {
@@ -32,20 +29,23 @@ export default function Step2({ formData, setFormData, nextStep, prevStep }) {
     },
   ];
 
+  const toggleSwitch = () => {
+    const updatedIsYearly = !isYearly;
+    setIsYearly(updatedIsYearly);
+    setFormData({ ...formData, isYearly: updatedIsYearly });
+  };
+
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    setFormData({ ...formData, selectedPlan });  // Save selected plan
     nextStep();
   };
 
   return (
     <>
       <div className="flex flex-col gap-2">
-        <span className="text-marineBlue bold text-3xl">
-          Select your plan
-        </span>
-        <span className="text-coolGray">
-          You have the option of monthly or yearly billing.
-        </span>
+        <span className="text-marineBlue bold text-3xl">Select your plan</span>
+        <span className="text-coolGray">You have the option of monthly or yearly billing.</span>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
@@ -53,7 +53,8 @@ export default function Step2({ formData, setFormData, nextStep, prevStep }) {
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className="flex flex-col h-48 w-40 justify-between border rounded-lg hover:cursor-pointer hover:border-purplishBlue active:bg-alabaster pt-5 p-3"
+                className={`flex flex-col h-48 w-40 justify-between border rounded-lg hover:cursor-pointer pt-5 p-3 ${selectedPlan === plan.name ? 'border-purplishBlue bg-alabaster' : 'hover:border-purplishBlue'}`}
+                onClick={() => setSelectedPlan(plan.name)}
               >
                 <Image src={plan.icon} width={40} height={40} alt={plan.name} />
                 <div className="flex flex-col">
@@ -69,21 +70,16 @@ export default function Step2({ formData, setFormData, nextStep, prevStep }) {
             ))}
           </div>
           <div className="flex justify-center items-center w-full p-4 bg-alabaster rounded-lg gap-5">
-            <span className={`medium ${isYearly ? 'text-coolGray' : 'text-marineBlue'}`}>
-              Month
-            </span>
+            <span className={`medium ${!isYearly ? 'text-marineBlue' : 'text-coolGray'}`}>Month</span>
             <div
               className="flex items-center justify-center w-12 h-6 bg-marineBlue rounded-full cursor-pointer"
               onClick={toggleSwitch}
             >
               <div
-                className={`w-4 h-4 bg-white rounded-full transform transition-transform duration-300 ease-in-out ${isYearly ? 'translate-x-3' : '-translate-x-3'
-                  }`}
+                className={`w-4 h-4 bg-white rounded-full transform transition-transform duration-300 ease-in-out ${isYearly ? 'translate-x-3' : '-translate-x-3'}`}
               ></div>
             </div>
-            <span className={`medium ${isYearly ? 'text-marineBlue' : 'text-coolGray'}`}>
-              Year
-            </span>
+            <span className={`medium ${isYearly ? 'text-marineBlue' : 'text-coolGray'}`}>Year</span>
           </div>
           <div className="flex justify-between items-end mt-16">
             <button className="text-coolGray w-fit hover:text-marineBlue px-5 py-3" onClick={prevStep}>
@@ -98,6 +94,8 @@ export default function Step2({ formData, setFormData, nextStep, prevStep }) {
     </>
   );
 }
+
+
 
 
 
