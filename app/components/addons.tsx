@@ -1,4 +1,6 @@
-export default function StepThree({ formData, setFormData, prevStep }) {
+import next from "next";
+
+export default function StepThree({ formData, setFormData, nextStep, prevStep }) {
   const addons = [
     {
       name: 'Online service',
@@ -35,7 +37,8 @@ export default function StepThree({ formData, setFormData, prevStep }) {
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     // Handle final form submission
-    console.log("Form submitted", formData);
+    // console.log("Form submitted", formData);
+    nextStep();
   };
 
   return (
@@ -75,7 +78,7 @@ export default function StepThree({ formData, setFormData, prevStep }) {
             <button className="text-coolGray w-fit hover:text-marineBlue px-5 py-3" onClick={prevStep}>
               Go back
             </button>
-            <button className="bg-marineBlue px-5 py-3 w-fit rounded-lg hover:bg-opacity-80" type="submit">
+            <button onClick={handleSubmit} className="bg-marineBlue px-5 py-3 w-fit rounded-lg hover:bg-opacity-80" type="submit">
               <span className="text-alabaster">Next Step</span>
             </button>
           </div>

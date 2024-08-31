@@ -4,6 +4,7 @@ import StepOne from "./components/info";
 import StepTwo from "./components/plans";
 import StepThree from "./components/addons";
 import Sidebar from "./components/sidebar/sidebar";
+import Summary from "./components/summary";
 
 export default function Home() {
   const [isYearly, setIsYearly] = useState(false);
@@ -25,6 +26,7 @@ export default function Home() {
         <div className="flex w-[65%] h-[75%] bg-white rounded-xl p-4">
           <Sidebar currentStep={step}/>
           <div className="flex flex-col w-[70%] h-full justify-center mt-5 px-20 gap-10">
+            {/* <Summary/> */}
             {step === 1 && (
               <StepOne
                 formData={formData}
@@ -43,10 +45,15 @@ export default function Home() {
             {step === 3 && (
               <StepThree
               formData={formData} 
-              setFormData={setFormData} 
+              setFormData={setFormData}
+              nextStep={nextStep}
               prevStep={prevStep} 
               // isYearly={isYearly}
             />            
+            )}
+            {step === 4 && (
+              <Summary
+              />
             )}
           </div>
         </div>
